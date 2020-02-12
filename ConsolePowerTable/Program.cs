@@ -19,15 +19,24 @@ namespace ConsolePowerTable
                 try
                 {
                     int num = int.Parse(checkNum);
-
+                    Console.WriteLine("Number Table \n"+ "============");
+                    for(int i = 1; i <= 10; i++) //shows powers 1-10
+                    {
+                        Console.WriteLine(num+" ^"+i+" = "+Math.Pow(num,i));
+                    }
+                    yes=Loop();
                 }
-                catch
+                catch(FormatException) //not a number
                 {
                     Console.WriteLine("Sorry that wasn't a number I understand.");
-                    Loop();
+                    yes=Loop();
                 }
-            }
-            
+                catch(OverflowException) //number is too big
+                {
+                    Console.WriteLine("Sorry, maybe try a smaller number?");
+                    yes=Loop();
+                }
+            }      
         }
         public static bool Loop()
         {
@@ -37,7 +46,10 @@ namespace ConsolePowerTable
             {
                 return true;
             }
+            else
+            {
             return false;
+            }
         }
     }
 }
